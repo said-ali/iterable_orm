@@ -38,10 +38,7 @@ def lookups(filter):
 class QuerySet(object):
 
     def __init__(self, queryset):
-        try:
-            self._queryset = list(queryset)
-        except TypeError:
-            raise ValueError('Queryset must be a list of objects or Dictionary')
+        self._queryset = list(queryset)
 
     def __iter__(self):
         return iter(self._queryset)
