@@ -44,8 +44,7 @@ class QuerySet(object):
             raise ValueError('Queryset must be a list of objects or Dictionary')
 
     def __iter__(self):
-        for query in self._queryset:
-            yield query
+        return iter(self._queryset)
 
     def __getitem__(self, index):
         return self._queryset[index]
