@@ -38,7 +38,13 @@ def lookups(filter):
 class QuerySet(object):
 
     def __init__(self, queryset):
-        self._queryset = list(queryset)
+        self._data = queryset
+
+    @property
+    def _queryset(self):
+        # Inorder to keep queryset lazy we don't convert _data which is geneartor object to list yet only when queryset is evaluated
+        self._data = list(self._data)
+        return self._data
 
     def __iter__(self):
         return iter(self._queryset)
@@ -50,7 +56,6 @@ class QuerySet(object):
         return len(self._queryset)
 
     def _copy(self, queryset):
-        """TODO chain function calls togther until consumption """
         return self.__class__(queryset)
 
     def first(self):

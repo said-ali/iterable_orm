@@ -28,7 +28,7 @@ last - Returns the first object or dictionary of filtered or exlcude data
 
 count - Returns a lenth of filtered or exlcude or dictionaries
 
-*Please note that Iterable_orm is not lazy evaluated yet, each call generates a new list using itertools and does not support Q like objects offered by Django ORM, but offers a way around by passing anonymous function to filter or exclude function e.g manager.filter(age=lambda x: x >= 20 and x <= 30)*
+*Please note that Iterable_orm does not support Q like objects offered by Django ORM, but offers a way around by passing anonymous function to filter or exclude function e.g manager.filter(age=lambda x: x >= 20 and x <= 30)*
 
 
 
@@ -45,9 +45,12 @@ Pass a list of objects or dictionary to Queryset
 
 Filtering and Excluding
 ---------
+
 You can filter and exclude data by value or lookups, such as gt, gte, lt, lte, startswith, istartswith, endswith, contains, icontains, value_in, value_not_in, value_range, date_range(expects a datetime object) or anonymous function.
 
 iterable_orm also allows you to filter related objects using the standard double-underscore notation to separate related fields, e.g manager.filter(parent__name='John'), this filters by parent.child == 'John'.
+
+All filtering and exlcuding are lazy so you can construct as many filtering as you like and its only evaluated on iterating, calling count, first, last and order_by. 
 
 Below are code examples of filtering and excluding, 
 
