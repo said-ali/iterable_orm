@@ -23,7 +23,7 @@ def lookups(filter):
         'lt': lambda obj_value, value: obj_value < value,
         'lte': lambda obj_value, value: obj_value <= value,
         'startswith': lambda obj_value, value: obj_value.startswith(value),
-        'istartswith': lambda obj_value, value: obj_value.lower().startswith(value),
+        'istartswith': lambda obj_value, value: obj_value.lower().startswith(value.lower()),
         'endswith': lambda obj_value, value: obj_value.endswith(value),
         'contains': lambda obj_value, value: value in obj_value,
         'icontains': lambda obj_value, value: value.lower() in obj_value.lower(),
