@@ -1,5 +1,5 @@
 Iterable_orm
-=====
+============
 
 .. image:: https://img.shields.io/pypi/v/iterable_orm.svg
     :target: https://pypi.python.org/pypi/iterable_orm
@@ -31,9 +31,9 @@ count - Returns a lenth of filtered or exlcude or dictionaries
 *Please note that Iterable_orm does not support Q like objects offered by Django ORM, but offers a way around by passing anonymous function to filter or exclude function e.g manager.filter(age=lambda x: x >= 20 and x <= 30)*
 
 
-
 Basic Usage
----------
+-----------
+
 Pass a list of objects or dictionary to Queryset
 
 .. code:: python
@@ -44,7 +44,7 @@ Pass a list of objects or dictionary to Queryset
 
 
 Filtering and Excluding
----------
+-----------------------
 
 You can filter and exclude data by value or lookups, such as gt, gte, lt, lte, startswith, istartswith, endswith, contains, icontains, value_in, value_not_in, value_range, date_range(expects a datetime object) or anonymous function.
 
@@ -75,8 +75,10 @@ Below are code examples of filtering and excluding,
    # Filter accounts who have registred from 01-01-2015 till 2016 and who are a female if date is string object
     data = manager.filter(registered__date_range=('01-01-2015', '01-01-2016')).exclude(gender='female')
 
+
 Filtering
 ---------
+
 You can filter data by value or lookups, such as gt, gte ect.
 
 Below are code examples of filtering, 
@@ -111,8 +113,10 @@ Below are code examples of filtering,
    # chain filter e.g
     data = manager.filter(name__istartswith='s').filter(gender='male')
 
+
 Excluding
 ---------
+
 You can Exclude data by value or lookups such as gt, gte ect.
 Below are code examples of exlcude function:
 
@@ -122,26 +126,28 @@ Below are code examples of exlcude function:
     Accounts = [A list of account objects that have attrubtes such as name, email, age, gender ect ]
     manager = Queryset(Accounts)
 
-    # Exlcude accounts with age greater that 25 
+    # Exclude accounts with age greater that 25
     data = manager.exclude(age__gt=20)
 
-    # Exlcude accounts with age less then 25 and who are a male
+    # Exclude accounts with age less then 25 and who are a male
     data = manager.exclude(age__lt=20, gender='male')
 
-    # Exlcude accounts with name starting with letter 's'
+    # Exclude accounts with name starting with letter 's'
     data = manager.filter(name__istartswith='s')
     
-   # Exlcude accounts who have registred from 01-01-2015 till 2016
-    data = manager.Exlcude(registered__date_range=('01-01-2015', '01-01-2016')) 
+   # Exclude accounts who have registred from 01-01-2015 till 2016
+    data = manager.exclude(registered__date_range=('01-01-2015', '01-01-2016'))
     
-   # Exlcude accounts who have friends who are a male
+   # Exclude accounts who have friends who are a male
     data = manager.filter(friends__gender='male')
 
-   # chain Exlcude e.g
-    data = manager.Exlcude(name__istartswith='s').Exlcude(gender='male')
+   # Chain exclude e.g.
+    data = manager.exclude(name__istartswith='s').exclude(gender='male')
+
 
 Ordering
----------
+--------
+
 You can order data by any value of object or dictionary :
 
 .. code:: python
@@ -165,6 +171,7 @@ You can order data by any value of object or dictionary :
 
 Unit Test
 ---------
+
 Unit test inlcudes full example usage of the API
 
 To tun unit test run:
@@ -186,6 +193,7 @@ Install the latest release with:
 
 Compatibility
 -------------
+
 Python 2.7, 3.0 to 3.5
 
 

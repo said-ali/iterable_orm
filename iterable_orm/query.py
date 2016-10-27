@@ -28,10 +28,10 @@ def lookups(filter):
         'contains': lambda obj_value, value: value in obj_value,
         'icontains': lambda obj_value, value: value.lower() in obj_value.lower(),
         'not_equal_to': lambda obj_value, value: obj_value != value,
-        'value_in': lambda obj_value, value: obj_value in value,
-        'value_not_in': lambda obj_value, value: obj_value not in value,
-        'value_range': lambda obj_value, range_values: obj_value >= range_values[0] and obj_value <= range_values[1],
-        'date_range': lambda obj_value, range_values: obj_value.isoformat() >= range_values[0].isoformat() and obj_value.isoformat() <= range_values[1].isoformat(),
+        'in': lambda obj_value, value: obj_value in value,
+        'not_in': lambda obj_value, value: obj_value not in value,
+        'range': lambda obj_value, range_values: range_values[0] <= obj_value <= range_values[1],
+        'date_range': lambda obj_value, range_values: range_values[0].isoformat() <= obj_value.isoformat() <= range_values[1].isoformat(),
     }.get(filter, None)
 
 
@@ -42,7 +42,8 @@ class QuerySet(object):
 
     @property
     def _queryset(self):
-        # Inorder to keep queryset lazy we don't convert _data which is geneartor object to list yet only when queryset is evaluated
+        # In order to keep queryset lazy we don't convert _data which is geneartor object to list yet only when queryset
+        # is evaluated.
         self._data = list(self._data)
         return self._data
 
@@ -88,7 +89,7 @@ class QuerySet(object):
             return self._copy(sorted(self._queryset, key=itemgetter(key.replace('__', '.')), reverse=reverse))
 
     def _filter_or_exclude(self, **kwargs):
-        """ Used for filter and exlcude returns a function to be used by itertool"""
+        """ Used for filter and exclude returns a function to be used by itertool. """
         def _filter(obj):
             for key, value in kwargs.items():
                 field_lookup = lookups(key.split('__')[-1])
@@ -101,7 +102,8 @@ class QuerySet(object):
                     continue
 
                 if field_lookup:
-                    # Since there's field_lookup remove last element which is a look up value such as gt, startswith ect
+                    # Since there's field_lookup, remove the last element which is a look up value such as gt,
+                    # startswith etc.
                     lookup_key.pop()
                     try:
                         lookup_match = field_lookup(reduce(getattr, lookup_key, obj), value)
