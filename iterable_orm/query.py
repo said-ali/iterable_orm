@@ -30,8 +30,8 @@ def lookups(filter):
         'not_equal_to': lambda obj_value, value: obj_value != value,
         'in': lambda obj_value, value: obj_value in value,
         'not_in': lambda obj_value, value: obj_value not in value,
-        'range': lambda obj_value, range_values: obj_value >= range_values[0] and obj_value <= range_values[1],
-        'date_range': lambda obj_value, range_values: obj_value.isoformat() >= range_values[0].isoformat() and obj_value.isoformat() <= range_values[1].isoformat(),
+        'range': lambda obj_value, range_values: range_values[0] <= obj_value <= range_values[1],
+        'date_range': lambda obj_value, range_values: range_values[0].isoformat() <= obj_value.isoformat() <= range_values[1].isoformat(),
     }.get(filter, None)
 
 
