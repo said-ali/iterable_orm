@@ -278,7 +278,6 @@ class TestQueries(unittest.TestCase):
     def test_range(self):
         queryset = self.queryset.filter(registered__range=('2015-09-21', '2016-12-08')).exclude(name='Crawford Wilkins')
         self.assertEqual(queryset.count(), 2)
-        queryset = queryset.filter(registered__value_range=('2015-09-21', '2016-12-08')).exclude(name='Crawford Wilkins')
 
         queryset = self.queryset.filter(registered__range=('2015-11-15', '2015-11-16'))
         self.assertEqual(queryset[0].id, ACCOUNT_OBJECTS[1].id)
