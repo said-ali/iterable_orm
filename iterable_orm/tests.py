@@ -275,12 +275,12 @@ class TestQueries(unittest.TestCase):
         self.assertFalse(self.queryset.filter(email='said.ali@msn.com').first())
         self.assertEqual(self.queryset.filter(email='wardwaller@elita.com').first(), self.queryset.filter(email='wardwaller@elita.com')[0])
 
-    def test_value_range(self):
-        queryset = self.queryset.filter(registered__value_range=('2015-09-21', '2016-12-08')).exclude(name='Crawford Wilkins')
+    def test_range(self):
+        queryset = self.queryset.filter(registered__range=('2015-09-21', '2016-12-08')).exclude(name='Crawford Wilkins')
         self.assertEqual(queryset.count(), 2)
         queryset = queryset.filter(registered__value_range=('2015-09-21', '2016-12-08')).exclude(name='Crawford Wilkins')
 
-        queryset = self.queryset.filter(registered__value_range=('2015-11-15', '2015-11-16'))
+        queryset = self.queryset.filter(registered__range=('2015-11-15', '2015-11-16'))
         self.assertEqual(queryset[0].id, ACCOUNT_OBJECTS[1].id)
 
 if __name__ == '__main__':

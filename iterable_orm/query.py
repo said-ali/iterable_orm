@@ -28,9 +28,9 @@ def lookups(filter):
         'contains': lambda obj_value, value: value in obj_value,
         'icontains': lambda obj_value, value: value.lower() in obj_value.lower(),
         'not_equal_to': lambda obj_value, value: obj_value != value,
-        'value_in': lambda obj_value, value: obj_value in value,
-        'value_not_in': lambda obj_value, value: obj_value not in value,
-        'value_range': lambda obj_value, range_values: obj_value >= range_values[0] and obj_value <= range_values[1],
+        'in': lambda obj_value, value: obj_value in value,
+        'not_in': lambda obj_value, value: obj_value not in value,
+        'range': lambda obj_value, range_values: obj_value >= range_values[0] and obj_value <= range_values[1],
         'date_range': lambda obj_value, range_values: obj_value.isoformat() >= range_values[0].isoformat() and obj_value.isoformat() <= range_values[1].isoformat(),
     }.get(filter, None)
 
