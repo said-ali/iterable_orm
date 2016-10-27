@@ -42,7 +42,8 @@ class QuerySet(object):
 
     @property
     def _queryset(self):
-        # Inorder to keep queryset lazy we don't convert _data which is geneartor object to list yet only when queryset is evaluated
+        # In order to keep queryset lazy we don't convert _data which is geneartor object to list yet only when queryset
+        # is evaluated.
         self._data = list(self._data)
         return self._data
 
@@ -88,7 +89,7 @@ class QuerySet(object):
             return self._copy(sorted(self._queryset, key=itemgetter(key.replace('__', '.')), reverse=reverse))
 
     def _filter_or_exclude(self, **kwargs):
-        """ Used for filter and exlcude returns a function to be used by itertool"""
+        """ Used for filter and exclude returns a function to be used by itertool. """
         def _filter(obj):
             for key, value in kwargs.items():
                 field_lookup = lookups(key.split('__')[-1])
@@ -101,7 +102,8 @@ class QuerySet(object):
                     continue
 
                 if field_lookup:
-                    # Since there's field_lookup remove last element which is a look up value such as gt, startswith ect
+                    # Since there's field_lookup, remove the last element which is a look up value such as gt,
+                    # startswith etc.
                     lookup_key.pop()
                     try:
                         lookup_match = field_lookup(reduce(getattr, lookup_key, obj), value)
