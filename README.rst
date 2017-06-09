@@ -39,7 +39,7 @@ Pass a list of objects or dictionary to Queryset
 .. code:: python
 
     from iterable_orm import QuerySet
-    Accounts = [ A list of account objects that have attrubtes such as name, email, age, gender ect ]
+    Accounts = [ A list of account objects that have attribute such as name, email, age, gender ect ]
     manager = Queryset(Accounts)
 
 
@@ -57,7 +57,7 @@ Below are code examples of filtering and excluding,
 .. code:: python
 
     from iterable_orm import QuerySet
-    Accounts = [A list of account objects that have attrubtes such as name, email, age, gender ect ]
+    Accounts = [A list of account objects that have attribute such as name, email, age, gender ect ]
     manager = Queryset(Accounts)
 
     # Filter accounts with age greater than 25 and exclude if gender is male
@@ -86,7 +86,8 @@ Below are code examples of filtering,
 .. code:: python
 
     from iterable_orm import QuerySet
-    Accounts = [A list of account objects that have attrubtes such as name, email, age, gender ect ]
+    Accounts = [A list of account objects that have 
+    such as name, email, age, gender ect ]
     manager = Queryset(Accounts)
 
     # Filter accounts with age greater that 25 
@@ -123,7 +124,7 @@ Below are code examples of exlcude function:
 .. code:: python
 
     from iterable_orm import QuerySet
-    Accounts = [A list of account objects that have attrubtes such as name, email, age, gender ect ]
+    Accounts = [A list of account objects that have attribute such as name, email, age, gender ect ]
     manager = Queryset(Accounts)
 
     # Exclude accounts with age greater that 25
@@ -153,7 +154,7 @@ You can order data by any value of object or dictionary :
 .. code:: python
 
     from iterable_orm import QuerySet
-    Accounts = [A list of account objects that have attrubtes such as name, email, age, gender ect ]
+    Accounts = [A list of account objects that have attribute such as name, email, age, gender ect ]
     manager = Queryset(Accounts)
 
     # Order by name 
